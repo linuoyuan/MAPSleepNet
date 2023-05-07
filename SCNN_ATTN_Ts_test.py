@@ -26,7 +26,7 @@ time_start = time.time()  # 记录开始时间
 
 total_cm = np.zeros((5,5))
 val_cm = np.zeros((5,5))
-for numm in range(1,11,1):
+for numm in range(5,6,1):
     ii = str(numm)
     data_dir = 'E:/data2/'+ii
     n_folds=2
@@ -35,15 +35,13 @@ for numm in range(1,11,1):
     n_classes=5
     EPOCH_SEC_LEN=30
     SAMPLING_RATE=128
-    seq_length=10
+    seq_length=20
     hidden_size_GRU=128
-    seq_length_GRU=10
+    seq_length_GRU=20
     
     batch_size = 32
     input_dims = SAMPLING_RATE*EPOCH_SEC_LEN
-    
-    if numm == 3 or numm == 5:
-        continue
+
     
     def print_performance(n_train_examples, n_valid_examples, train_cm, valid_cm, 
                           epoch, n_epochs, train_duration, train_loss, train_acc, 
@@ -383,7 +381,7 @@ for numm in range(1,11,1):
     f_model = models.Sequential()   
     f_model.add(f_1_model)
     f_model.add(f_2_model)
-    f_model.load_weights('E:/Lab/EOG_Code/infant_sleep - tf20-2/network/model/multi-group/CNN_ATTN_Ts/CHAT/C4/10/fold'
+    f_model.load_weights('E:/Lab/EOG_Code/infant_sleep - tf20-2/network/model/multi-group/CNN_ATTN_Ts_ADDLOSS/MASS/C4/20/fold'
                           +ii+'/feature_learning/f_model_weights.h5')
     ###########################################################    
     
@@ -410,7 +408,7 @@ for numm in range(1,11,1):
     s_model.add(f_1_model)
     s_model.add(s_1_model)
     # s_model.summary()    
-    s_model.load_weights('E:/Lab/EOG_Code/infant_sleep - tf20-2/network/model/multi-group/CNN_ATTN_Ts/CHILD/C4/10/fold'
+    s_model.load_weights('E:/Lab/EOG_Code/infant_sleep - tf20-2/network/model/multi-group/CNN_ATTN_Ts_ADDLOSS/MASS/C4/20/fold'
                           +ii+'/sequence_learning/s_model_weights.h5')
 
     
